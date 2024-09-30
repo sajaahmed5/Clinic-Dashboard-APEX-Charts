@@ -1,47 +1,47 @@
 [
   {
-    "Year": 2015,
-    "Sum of amount": 3635001,
-    "Earliest Date": "2015-01-01 00:00:00"
+    "year_": 2015,
+    "sum_of_amount": 3635001,
+    "Earliest_date": "2015-01-01 00:00:00"
   },
   {
-    "Year": 2016,
-    "Sum of amount": 3794380,
-    "Earliest Date": "2016-01-01 00:00:00"
+    "year_": 2016,
+    "sum_of_amount": 3794380,
+    "Earliest_date": "2016-01-01 00:00:00"
   },
   {
-    "Year": 2017,
-    "Sum of amount": 3543950.3,
-    "Earliest Date": "2017-01-01 00:00:00"
+    "year_": 2017,
+    "sum_of_amount": 3543950.3,
+    "Earliest_date": "2017-01-01 00:00:00"
   },
   {
-    "Year": 2018,
-    "Sum of amount": 3670000,
-    "Earliest Date": "2018-01-01 00:00:00"
+    "year_": 2018,
+    "sum_of_amount": 3670000,
+    "Earliest_date": "2018-01-01 00:00:00"
   },
   {
-    "Year": 2019,
-    "Sum of amount": 4597350,
-    "Earliest Date": "2019-01-01 00:00:00"
+    "year_": 2019,
+    "sum_of_amount": 4597350,
+    "Earliest_date": "2019-01-01 00:00:00"
   },
   {
-    "Year": 2020,
-    "Sum of amount": 3560100,
-    "Earliest Date": "2020-01-01 00:00:00"
+    "year_": 2020,
+    "sum_of_amount": 3560100,
+    "Earliest_date": "2020-01-01 00:00:00"
   },
   {
-    "Year": 2021,
-    "Sum of amount": 2847550,
-    "Earliest Date": "2021-01-01 00:00:00"
+    "year_": 2021,
+    "sum_of_amount": 2847550,
+    "Earliest_date": "2021-01-01 00:00:00"
   },
   {
-    "Year": 2022,
-    "Sum of amount": 2881650,
-    "Earliest Date": "2022-01-01 00:00:00"
+    "year_": 2022,
+    "sum_of_amount": 2881650,
+    "Earliest_date": "2022-01-01 00:00:00"
   },
   {
-    "Year": 2023,
-    "Sum of amount": 2621950,
-    "Earliest Date": "2023-01-01 00:00:00"
+    "year_": 2023,
+    "sum_of_amount": 2621950,
+    "Earliest_date": "2023-01-01 00:00:00"
   }
 ]
