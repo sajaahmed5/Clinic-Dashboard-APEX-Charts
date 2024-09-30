@@ -1,6 +1,7 @@
 const express = require('express');
-const mysql = require('mysql');
+const fs = require('fs');
 const cors = require('cors'); // Import cors
+const csv = require('csv-parser'); // Import csv-parser
 
 const app = express();
 const port = 3000;
@@ -8,42 +9,36 @@ const port = 3000;
 // Use CORS middleware
 app.use(cors());
 
-// Create connection to MySQL
-const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'sajaucas5',
-    database: 'ben_schema_charts'
-});
-
-// Connect to MySQL
-db.connect(err => {
-    if (err) throw err;
-    console.log('MySQL connected...');
-});
+// Function to read and parse CSV files
+const readCSVFile = (filePath) => {
+    return new Promise((resolve, reject) => {
+        const results = [];
+        fs.createReadStream(filePath)
+            .pipe(csv()) // Parse CSV file
+            .on('data', (data) => results.push(data))
+            .on('end', () => resolve(results)) // Resolve the parsed data
+            .on('error', (err) => reject(err)); // Handle errors
+    });
+};
 
 // Define API endpoint to get chart data
-app.get('/chart-data', (req, res) => {
-    const query1 = `SELECT year_, sum_of_amount AS sumAmount FROM chart_4_1`;
-    const query2 = `SELECT * FROM chart_4_2`;
-    const query3 = `SELECT * FROM chart_4_3`;
+app.get('/chart-data', async (req, res) => {
+    try {
+        // Read all the dataset files (assume they are in the same directory as this script)
+        const chart1 = await readCSVFile('./chart_4_1.csv');
+        const chart2 = await readCSVFile('./chart_4_2.csv');
+        const chart3 = await readCSVFile('./chart_4_3.csv');
 
-    db.query(query1, (err, results1) => {
-        if (err) throw err;
-        db.query(query2, (err, results2) => {
-            if (err) throw err;
-            db.query(query3, (err, results3) => {
-                if (err) throw err;
-
-                // Return all chart data in one response
-                res.json({
-                    chart1: results1,
-                    chart2: results2,
-                    chart3: results3
-                });
-            });
+        // Return all chart data in one response
+        res.json({
+            chart1,
+            chart2,
+            chart3
         });
-    });
+    } catch (err) {
+        console.error("Error reading data files: ", err);
+        res.status(500).json({ error: "Failed to read chart data" });
+    }
 });
 
 // Start server
