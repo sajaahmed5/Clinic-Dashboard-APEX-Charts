@@ -1,18 +1,18 @@
 [
   {
-    "Year": 2015,
-    "CountZeros": 22
+    "year_": 2015,
+    "CountZerosAmounts": 22
   },
   {
-    "Year": 2016,
-    "CountZeros": 41
+    "year_": 2016,
+    "CountZerosAmounts": 41
   },
   {
-    "Year": 2017,
-    "CountZeros": 16
+    "year_": 2017,
+    "CountZerosAmounts": 16
   },
   {
-    "Year": 2018,
-    "CountZeros": 6
+    "year_": 2018,
+    "CountZerosAmounts": 6
   }
 ]
