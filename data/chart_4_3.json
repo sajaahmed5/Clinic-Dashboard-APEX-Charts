@@ -1,0 +1,182 @@
+[
+  {
+    "year_": 2015,
+    "ProcedureName": "Consultation",
+    "Count_of_acte_id_max_per_name": 1
+  },
+  {
+    "year_": 2015,
+    "ProcedureName": "Contrôle",
+    "Count_of_acte_id_max_per_name": 2
+  },
+  {
+    "year_": 2015,
+    "ProcedureName": "Extraction",
+    "Count_of_acte_id_max_per_name": 10
+  },
+  {
+    "year_": 2015,
+    "ProcedureName": "Opération",
+    "Count_of_acte_id_max_per_name": 9
+  },
+  {
+    "year_": 2015,
+    "ProcedureName": "Orthodotntie",
+    "Count_of_acte_id_max_per_name": 396
+  },
+  {
+    "year_": 2015,
+    "ProcedureName": "Prothèse",
+    "Count_of_acte_id_max_per_name": 28
+  },
+  {
+    "year_": 2015,
+    "ProcedureName": "Soins",
+    "Count_of_acte_id_max_per_name": 299
+  },
+  {
+    "year_": 2016,
+    "ProcedureName": "Extraction",
+    "Count_of_acte_id_max_per_name": 134
+  },
+  {
+    "year_": 2016,
+    "ProcedureName": "Orthodotntie",
+    "Count_of_acte_id_max_per_name": 207
+  },
+  {
+    "year_": 2016,
+    "ProcedureName": "Prothèse",
+    "Count_of_acte_id_max_per_name": 101
+  },
+  {
+    "year_": 2016,
+    "ProcedureName": "Soins",
+    "Count_of_acte_id_max_per_name": 1162
+  },
+  {
+    "year_": 2017,
+    "ProcedureName": "Extraction",
+    "Count_of_acte_id_max_per_name": 65
+  },
+  {
+    "year_": 2017,
+    "ProcedureName": "Orthodotntie",
+    "Count_of_acte_id_max_per_name": 96
+  },
+  {
+    "year_": 2017,
+    "ProcedureName": "Prothèse",
+    "Count_of_acte_id_max_per_name": 49
+  },
+  {
+    "year_": 2017,
+    "ProcedureName": "Soins",
+    "Count_of_acte_id_max_per_name": 1033
+  },
+  {
+    "year_": 2018,
+    "ProcedureName": "Consultation",
+    "Count_of_acte_id_max_per_name": 13
+  },
+  {
+    "year_": 2018,
+    "ProcedureName": "Extraction",
+    "Count_of_acte_id_max_per_name": 23
+  },
+  {
+    "year_": 2018,
+    "ProcedureName": "Orthodotntie",
+    "Count_of_acte_id_max_per_name": 68
+  },
+  {
+    "year_": 2018,
+    "ProcedureName": "Prothèse",
+    "Count_of_acte_id_max_per_name": 29
+  },
+  {
+    "year_": 2018,
+    "ProcedureName": "Soins",
+    "Count_of_acte_id_max_per_name": 1492
+  },
+  {
+    "year_": 2019,
+    "ProcedureName": "Extraction",
+    "Count_of_acte_id_max_per_name": 3
+  },
+  {
+    "year_": 2019,
+    "ProcedureName": "Soins",
+    "Count_of_acte_id_max_per_name": 1769
+  },
+  {
+    "year_": 2020,
+    "ProcedureName": "Extraction",
+    "Count_of_acte_id_max_per_name": 2
+  },
+  {
+    "year_": 2020,
+    "ProcedureName": "Orthodotntie",
+    "Count_of_acte_id_max_per_name": 1
+  },
+  {
+    "year_": 2020,
+    "ProcedureName": "Prothèse",
+    "Count_of_acte_id_max_per_name": 1
+  },
+  {
+    "year_": 2020,
+    "ProcedureName": "Soins",
+    "Count_of_acte_id_max_per_name": 1497
+  },
+  {
+    "year_": 2021,
+    "ProcedureName": "Soins",
+    "Count_of_acte_id_max_per_name": 1174
+  },
+  {
+    "year_": 2022,
+    "ProcedureName": "Soins",
+    "Count_of_acte_id_max_per_name": 1122
+  },
+  {
+    "year_": 2023,
+    "ProcedureName": "Extraction",
+    "Count_of_acte_id_max_per_name": 1
+  },
+  {
+    "year_": 2023,
+    "ProcedureName": "Orthodotntie",
+    "Count_of_acte_id_max_per_name": 2
+  },
+  {
+    "year_": 2023,
+    "ProcedureName": "Prothèse",
+    "Count_of_acte_id_max_per_name": 6
+  },
+  {
+    "year_": 2023,
+    "ProcedureName": "Soins",
+    "Count_of_acte_id_max_per_name": 1021
+  },
+  {
+    "year_": 2024,
+    "ProcedureName": "Opération",
+    "Count_of_acte_id_max_per_name": 1
+  },
+  {
+    "year_": 2024,
+    "ProcedureName": "Orthodotntie",
+    "Count_of_acte_id_max_per_name": 6
+  },
+  {
+    "year_": 2024,
+    "ProcedureName": "Prothèse",
+    "Count_of_acte_id_max_per_name": 2
+  },
+  {
+    "year_": 2024,
+    "ProcedureName": "Soins",
+    "Count_of_acte_id_max_per_name": 618
+  }
+]
