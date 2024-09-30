@@ -1,7 +1,7 @@
 const express = require('express');
-const fs = require('fs');
-const cors = require('cors'); // Import cors
-const csv = require('csv-parser'); // Import csv-parser
+const axios = require('axios');
+const csv = require('csvtojson'); // Import csvtojson to convert CSV to JSON format
+const cors = require('cors');
 
 const app = express();
 const port = 3000;
@@ -9,35 +9,35 @@ const port = 3000;
 // Use CORS middleware
 app.use(cors());
 
-// Function to read and parse CSV files
-const readCSVFile = (filePath) => {
-    return new Promise((resolve, reject) => {
-        const results = [];
-        fs.createReadStream(filePath)
-            .pipe(csv()) // Parse CSV file
-            .on('data', (data) => results.push(data))
-            .on('end', () => resolve(results)) // Resolve the parsed data
-            .on('error', (err) => reject(err)); // Handle errors
-    });
-};
+// GitHub raw links to your CSV files
+const csvUrl1 = 'https://raw.githubusercontent.com/sajaahmed5/Clinic-Dashboard-APEX-Charts/refs/heads/main/chart_4_1.csv';
+const csvUrl2 = 'https://raw.githubusercontent.com/sajaahmed5/Clinic-Dashboard-APEX-Charts/refs/heads/main/chart_4_2.csv';
+const csvUrl3 = 'https://raw.githubusercontent.com/sajaahmed5/Clinic-Dashboard-APEX-Charts/refs/heads/main/chart_4_3.csv';
 
 // Define API endpoint to get chart data
 app.get('/chart-data', async (req, res) => {
     try {
-        // Read all the dataset files (assume they are in the same directory as this script)
-        const chart1 = await readCSVFile('./chart_4_1.csv');
-        const chart2 = await readCSVFile('./chart_4_2.csv');
-        const chart3 = await readCSVFile('./chart_4_3.csv');
+        // Fetch CSV data from GitHub
+        const [response1, response2, response3] = await Promise.all([
+            axios.get(csvUrl1),
+            axios.get(csvUrl2),
+            axios.get(csvUrl3)
+        ]);
+
+        // Parse CSV data to JSON
+        const chart1Data = await csv().fromString(response1.data);
+        const chart2Data = await csv().fromString(response2.data);
+        const chart3Data = await csv().fromString(response3.data);
 
         // Return all chart data in one response
         res.json({
-            chart1,
-            chart2,
-            chart3
+            chart1: chart1Data,
+            chart2: chart2Data,
+            chart3: chart3Data
         });
     } catch (err) {
-        console.error("Error reading data files: ", err);
-        res.status(500).json({ error: "Failed to read chart data" });
+        console.error('Error fetching or processing data:', err);
+        res.status(500).send('Error fetching chart data');
     }
 });
 
