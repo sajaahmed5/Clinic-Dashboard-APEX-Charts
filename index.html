@@ -80,7 +80,7 @@
 
         // Chart 1 - Total revenue for each year
         const chart1Categories = chart1Data.map(item => item.year_);
-        const chart1Values = chart1Data.map(item => item.sumAmount);
+        const chart1Values = chart1Data.map(item => item.sum_of_amount);
         const options1 = {
             chart: { type: 'line' },
             series: [{ name: 'Sum of Amount', data: chart1Values }],
