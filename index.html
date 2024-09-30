@@ -10,7 +10,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: #e0e7ff; /* Background color similar to your image */
+            background: #e0e7ff;
         }
         .chart-container {
             display: flex;
@@ -26,7 +26,7 @@
         }
         .chart {
             width: 100%;
-            height: 300px; /* Adjust height if needed */
+            height: 300px;
         }
         h1 {
             text-align: center;
@@ -35,7 +35,7 @@
         }
         #logo {
             position: absolute;
-            top: 30px; /* Adjust according to chart position */
+            top: 30px;
             left: 5%;
             transform: translateX(-50%);
             z-index: 1;
@@ -50,7 +50,7 @@
     <h1>Clinic Dashboard</h1>
 
     <div id="logo">
-        <img src="SIRGAD_logo.png" alt="SIRGAD Logo"> <!-- Add path to logo image -->
+        <img src="SIRGAD_logo.png" alt="SIRGAD Logo"> <!-- Ensure the path to logo is correct -->
     </div>
 
     <!-- Chart Containers -->
@@ -67,8 +67,8 @@
     </div>
 
     <script>
-    // Fetch data from the API
-    fetch('http://localhost:3000/chart-data')
+    // Fetch data from the deployed API (change the URL to your deployed backend URL)
+    fetch('https://clinic-dashboard-apex-charts.onrender.com/chart-data')
     .then(response => response.json())
     .then(data => {
         console.log("Fetched data:", data);
@@ -84,9 +84,7 @@
                 xaxis: { categories: chart1Categories },
                 title: { text: 'Total revenue for each year', align: 'center' },
                 colors: ['#1E90FF'], // Line color
-                stroke: {
-                    curve: 'smooth'
-                },
+                stroke: { curve: 'smooth' },
                 yaxis: {
                     labels: {
                         formatter: val => Math.floor(val).toLocaleString() // Format large numbers
