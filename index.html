@@ -67,110 +67,80 @@
     </div>
 
     <script>
-    // Fetch data from the deployed API (change the URL to your deployed backend URL)
-    fetch('https://clinic-dashboard-apex-charts.onrender.com/chart-data')
-    .then(response => response.json())
-    .then(data => {
-        console.log("Fetched data:", data);
+    // Fetch data from the static JSON files
+    const baseUrl = 'https://raw.githubusercontent.com/sajaahmed5/Clinic-Dashboard-APEX-Charts/refs/heads/main/data/';
 
-        // Chart 1 - Based on `chart1` dataset (from chart_4_1)
-        if (data.chart1 && data.chart1.length > 0) {
-            const chart1Categories = data.chart1.map(item => item.year_);
-            const chart1Values = data.chart1.map(item => item.sumAmount);
+    Promise.all([
+        fetch(`${baseUrl}chart_4_1.json`).then(response => response.json()),
+        fetch(`${baseUrl}chart_4_2.json`).then(response => response.json()),
+        fetch(`${baseUrl}chart_4_3.json`).then(response => response.json())
+    ])
+    .then(([chart1Data, chart2Data, chart3Data]) => {
+        console.log("Fetched data:", { chart1Data, chart2Data, chart3Data });
 
-            const options1 = {
-                chart: { type: 'line' },
-                series: [{ name: 'Sum of Amount', data: chart1Values }],
-                xaxis: { categories: chart1Categories },
-                title: { text: 'Total revenue for each year', align: 'center' },
-                colors: ['#1E90FF'], // Line color
-                stroke: { curve: 'smooth' },
-                yaxis: {
-                    labels: {
-                        formatter: val => Math.floor(val).toLocaleString() // Format large numbers
-                    }
-                }
+        // Chart 1 - Total revenue for each year
+        const chart1Categories = chart1Data.map(item => item.year_);
+        const chart1Values = chart1Data.map(item => item.sumAmount);
+        const options1 = {
+            chart: { type: 'line' },
+            series: [{ name: 'Sum of Amount', data: chart1Values }],
+            xaxis: { categories: chart1Categories },
+            title: { text: 'Total revenue for each year', align: 'center' },
+            colors: ['#1E90FF'],
+            stroke: { curve: 'smooth' },
+            yaxis: { labels: { formatter: val => Math.floor(val).toLocaleString() } }
+        };
+        const chart1 = new ApexCharts(document.querySelector("#chart1"), options1);
+        chart1.render();
+
+        // Chart 2 - Number of unpaid procedures per year
+        const chart2Categories = chart2Data.map(item => item.year_);
+        const chart2Values = chart2Data.map(item => item.CountZerosAmounts);
+        const options2 = {
+            chart: { type: 'bar' },
+            series: [{ name: 'Value', data: chart2Values }],
+            xaxis: { categories: chart2Categories },
+            title: { text: 'Number of unpaid procedures per year', align: 'center' },
+            colors: ['#1E90FF'],
+            dataLabels: { enabled: false },
+            yaxis: { labels: { formatter: val => Math.floor(val).toLocaleString() } }
+        };
+        const chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
+        chart2.render();
+
+        // Chart 3 - Count of Occurring Procedures Each Year
+        const chart3Categories = [...new Set(chart3Data.map(item => item.year_))];
+        const procedures = ['Consultation', 'Contrôle', 'Extraction', 'Opération', 'Orthodotntie', 'Prothèse', 'Soins'];
+
+        const seriesData = procedures.map(procedure => {
+            return {
+                name: procedure,
+                data: chart3Categories.map(year => {
+                    const record = chart3Data.find(item => item.year_ === year && item.ProcedureName === procedure);
+                    return record ? record['Count_of_acte_id_max_per_name'] : 0;
+                })
             };
-            const chart1 = new ApexCharts(document.querySelector("#chart1"), options1);
-            chart1.render();
-        } else {
-            console.error("Chart 1 data is missing or empty.");
-        }
+        });
 
-        // Chart 2 - Based on `chart2` dataset (from chart_4_2)
-        if (data.chart2 && data.chart2.length > 0) {
-            const chart2Categories = data.chart2.map(item => item.year_);
-            const chart2Values = data.chart2.map(item => item.CountZerosAmounts);
-
-            const options2 = {
-                chart: { type: 'bar' },
-                series: [{ name: 'Value', data: chart2Values }],
-                xaxis: { categories: chart2Categories },
-                title: { text: 'Number of unpaid procedures per year', align: 'center' },
-                colors: ['#1E90FF'], // Bar color
-                dataLabels: {
-                    enabled: false
-                },
-                yaxis: {
-                    labels: {
-                        formatter: val => Math.floor(val).toLocaleString()
-                    }
-                }
-            };
-            const chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
-            chart2.render();
-        } else {
-            console.error("Chart 2 data is missing or empty.");
-        }
-
-        // Chart 3 - Multi-series Clustered Column Chart (from chart_4_3)
-        if (data.chart3 && data.chart3.length > 0) {
-            const chart3Categories = [...new Set(data.chart3.map(item => item.year_))]; // Get unique years
-            const procedures = ['Consultation', 'Contrôle', 'Extraction', 'Opération', 'Orthodotntie', 'Prothèse', 'Soins'];
-
-            const seriesData = procedures.map(procedure => {
-                return {
-                    name: procedure,
-                    data: chart3Categories.map(year => {
-                        const record = data.chart3.find(item => item.year_ === year && item.ProcedureName === procedure);
-                        return record ? record['Count_of_acte_id_max_per_name'] : 0;
-                    })
-                };
-            });
-
-            const options3 = {
-                chart: { type: 'bar' },
-                series: seriesData,
-                xaxis: {
-                    categories: chart3Categories,
-                    title: { text: 'Year' }
-                },
-                yaxis: {
-                    logarithmic: true, // Set y-axis to logarithmic scale
-                    min: 1,
-                    max: 10000,
-                    title: { text: 'Count of Occurring Procedures each Year' }
-                },
-                plotOptions: {
-                    bar: {
-                        horizontal: false,
-                        columnWidth: '55%',
-                        endingShape: 'flat'
-                    }
-                },
-                title: { text: 'Count of Occurring Procedures Each Year', align: 'center' },
-                colors: ['#C0C0C0', '#7B68EE', '#00BFFF', '#FFD700', '#FF69B4', '#808080', '#1E90FF'],
-                dataLabels: { enabled: false }
-            };
-            const chart3 = new ApexCharts(document.querySelector("#chart3"), options3);
-            chart3.render();
-        } else {
-            console.error("Chart 3 data is missing or empty.");
-        }
+        const options3 = {
+            chart: { type: 'bar' },
+            series: seriesData,
+            xaxis: { categories: chart3Categories, title: { text: 'Year' } },
+            yaxis: { title: { text: 'Count of Occurring Procedures each Year' } },
+            plotOptions: {
+                bar: { horizontal: false, columnWidth: '55%', endingShape: 'flat' }
+            },
+            title: { text: 'Count of Occurring Procedures Each Year', align: 'center' },
+            colors: ['#C0C0C0', '#7B68EE', '#00BFFF', '#FFD700', '#FF69B4', '#808080', '#1E90FF'],
+            dataLabels: { enabled: false }
+        };
+        const chart3 = new ApexCharts(document.querySelector("#chart3"), options3);
+        chart3.render();
     })
     .catch(err => {
         console.error("Error fetching chart data:", err);
     });
-    </script>
+</script>
+
 </body>
 </html>
